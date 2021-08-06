@@ -34,6 +34,8 @@ const mapStateToProps = (state) => {
   };
 };
 
+//Вариант как ниже описан используется в файле ContactsForm.js
+
 // const mapDispatchToProps = (dispatch) => {
 //   return {
 //     deleteContact: (id) => {
