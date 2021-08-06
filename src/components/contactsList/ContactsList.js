@@ -3,24 +3,26 @@ import { connect } from "react-redux";
 import { deleteContact } from "../../redux/contacts/contactsAction";
 import { ContactsListStyled } from "./ContactsListStyled";
 
-const ContactsList = ({ contacts, filter = "", deleteContact }) => {
+// const ContactsList = ({ contacts, filter = "", deleteContact }) => {
+const ContactsList = ({ contacts, deleteContact }) => {
   return (
     <ContactsListStyled>
       <ul>
         {contacts.map(
-          (contact) =>
-            contact.name.toLowerCase().includes(filter.toLowerCase()) && (
-              <li key={contact.id}>
-                {contact.name}: {contact.number}
-                <button
-                  className="contactBtn"
-                  type="button"
-                  onClick={() => deleteContact(contact.id)}
-                >
-                  Delete
-                </button>
-              </li>
-            )
+          (contact) => (
+            // contact.name.toLowerCase().includes(filter.toLowerCase()) && (
+            <li key={contact.id}>
+              {contact.name}: {contact.number}
+              <button
+                className="contactBtn"
+                type="button"
+                onClick={() => deleteContact(contact.id)}
+              >
+                Delete
+              </button>
+            </li>
+          )
+          // )
         )}
       </ul>
     </ContactsListStyled>
@@ -29,11 +31,11 @@ const ContactsList = ({ contacts, filter = "", deleteContact }) => {
 
 const mapStateToProps = (state) => {
   return {
-    // contacts: state.contacts.items.filter((contact) =>
-    //   contact.name.toLowerCase().includes(state.contacts.filter.toLowerCase())
-    // ),
-    contacts: state.contacts.items,
-    filter: state.contacts.filter,
+    contacts: state.contacts.items.filter((contact) =>
+      contact.name.toLowerCase().includes(state.contacts.filter.toLowerCase())
+    ),
+    // contacts: state.contacts.items,
+    // filter: state.contacts.filter,
   };
 };
 
